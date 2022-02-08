@@ -15,7 +15,7 @@ const Stopwatch = ({ minutes, seconds }: StopwatchProps) => {
       </div>
       <div className="stopwatch__time stopwatch__seconds">
         <span className="time stopwatch__seconds-time">
-          {seconds === 0 ? `0${seconds}` : `${seconds}`}
+          {seconds < 10 ? `0${seconds}` : `${seconds}`}
         </span>
         <h1 className="label stopwatch__seconds-label">Seconds</h1>
       </div>
