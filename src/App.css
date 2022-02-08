@@ -2,7 +2,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   background-color: #a13d3d;
-  animation: colors 13s linear infinite;
+  /* animation: colors 13s linear infinite; */
   transition: 5s ease;
 }
 

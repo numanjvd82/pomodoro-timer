@@ -1,30 +1,35 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 import Stopwatch from './components/Stopwatch';
+import Sidebar from './components/Sidebar';
+import { HiMenu } from 'react-icons/hi';
+import './App.css';
 
 function App() {
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
   const [reset, setReset] = useState(false);
   const [start, setStart] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
   const handleReset = () => {
     if (window.confirm('Are you sure you want to reset?')) {
       setMinutes(25);
       setSeconds(0);
-      setReset(true);
+      setReset(false);
     } else {
       return;
     }
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
+      // If seconds is 0, set minutes to minutes - 1
       if (start) {
         if (seconds === 0) {
           setSeconds(60);
           setMinutes((minutes) => minutes - 1);
         }
+        // if seconds and minutes are both === 0 then we reset the timer with the alert
         if (minutes === 0 && seconds === 0) {
           alert('Time is up!');
           setMinutes(25);
@@ -35,20 +40,22 @@ function App() {
       if (!start) {
         clearInterval(interval);
       }
-      if (reset) {
-        setMinutes(25);
-        setSeconds(60);
-        setReset(false);
-      }
     }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [minutes, seconds, start, reset]);
+  }, [minutes, seconds, start]);
 
   return (
     <>
+      <HiMenu
+        style={{ margin: '0.5rem 1.5rem' }}
+        onClick={() => setSidebar(true)}
+        className="menu-btn sidebar__header-open"
+        fontSize={36}
+      />
+      {sidebar && <Sidebar sidebar={sidebar} setSidebar={setSidebar} />}
       <h1 className="heading-1">Pomodoro timer</h1>
       <div className="container">
         <Stopwatch minutes={minutes} seconds={seconds} />
@@ -56,7 +63,7 @@ function App() {
           <button onClick={() => setStart(!start)} className="btn btn__start">
             {start ? 'Stop' : 'Start'}
           </button>
-          <button onClick={() => setReset(true)} className="btn btn__reset">
+          <button onClick={handleReset} className="btn btn__reset">
             Reset
           </button>
         </section>
