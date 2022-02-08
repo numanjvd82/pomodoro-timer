@@ -46,8 +46,8 @@ body {
 .btn-container {
   margin: 1rem 0;
   padding: 1.5rem;
-  background: #fff;
-  border-radius: 5px;
+  background: #f1a2a2;
+  border-radius: 15px;
 }
 
 .btn {

@@ -4,11 +4,12 @@ import './Stopwatch.css';
 interface StopwatchProps {
   minutes: number;
   seconds: number;
+  divRef: React.RefObject<HTMLDivElement>;
 }
 
-const Stopwatch = ({ minutes, seconds }: StopwatchProps) => {
+const Stopwatch = ({ minutes, seconds, divRef }: StopwatchProps) => {
   return (
-    <div className="stopwatch">
+    <div ref={divRef} className="stopwatch">
       <div className="stopwatch__time stopwatch__minutes">
         <span className="time stopwatch__minutes-time"> {minutes}</span>
         <h1 className="label stopwatch__minutes-label">Minutes</h1>

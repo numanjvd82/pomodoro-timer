@@ -1,8 +1,9 @@
 .stopwatch {
   position: relative;
-  width: 30%;
-  background-color: #fff;
-  border-radius: 5px;
+  width: 500px;
+  padding: 5rem 0;
+  background-color: #f1a2a2;
+  border-radius: 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -10,14 +11,14 @@
 }
 
 .time {
-  font-size: 3rem;
-  color: #000000;
+  font-size: 5rem;
+  color: #fff;
 }
 
 .stopwatch__time {
   padding: 1rem 1.5rem;
   margin: 1rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: #c56565;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -29,4 +30,10 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #000;
+}
+
+@media screen and (max-width: 550px) {
+  .stopwatch {
+    width: 100%;
+  }
 }

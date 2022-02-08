@@ -1,21 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Stopwatch from './components/Stopwatch';
 import Sidebar from './components/Sidebar';
 import { HiMenu } from 'react-icons/hi';
 import './App.css';
 
 function App() {
-  const [minutes, setMinutes] = useState(25);
+  const [minutes, setMinutes] = useState(45);
   const [seconds, setSeconds] = useState(0);
   const [reset, setReset] = useState(false);
   const [start, setStart] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+
+  const divRef = useRef<HTMLDivElement>(null);
 
   const handleReset = () => {
     if (window.confirm('Are you sure you want to reset?')) {
       setMinutes(25);
       setSeconds(0);
       setReset(false);
+      setStart(false);
     } else {
       return;
     }
@@ -33,9 +36,10 @@ function App() {
         if (minutes === 0 && seconds === 0) {
           alert('Time is up!');
           setMinutes(25);
-          setSeconds(60);
+          setSeconds(0);
         }
         setSeconds((seconds) => seconds - 1);
+        // add border to divRef
       }
       if (!start) {
         clearInterval(interval);
@@ -58,7 +62,7 @@ function App() {
       {sidebar && <Sidebar sidebar={sidebar} setSidebar={setSidebar} />}
       <h1 className="heading-1">Pomodoro timer</h1>
       <div className="container">
-        <Stopwatch minutes={minutes} seconds={seconds} />
+        <Stopwatch divRef={divRef} minutes={minutes} seconds={seconds} />
         <section className="btn-container">
           <button onClick={() => setStart(!start)} className="btn btn__start">
             {start ? 'Stop' : 'Start'}
