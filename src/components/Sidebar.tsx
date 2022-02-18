@@ -6,9 +6,10 @@ import './Sidebar.css';
 interface SidebarProps {
   sidebar: boolean;
   setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
+const Sidebar = ({ sidebar, setSidebar, handleChange }: SidebarProps) => {
   return ReactDOM.createPortal(
     <>
       <div className="sidebar">
@@ -27,6 +28,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
             className="input sidebar__input-timer"
             placeholder="Change Timer"
             min={0}
+            onChange={handleChange}
           />
           <input
             type="number"
@@ -34,6 +36,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
             className="input sidebar__input-shortbreak"
             placeholder="Change Short Break"
             min={0}
+            onChange={handleChange}
           />
           <input
             type="number"
@@ -41,10 +44,16 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
             className="input sidebar__input-longbreak"
             placeholder="Change Long Break"
             min={0}
+            onChange={handleChange}
           />
         </div>
         <div className="sidebar__footer">
-          <button className="btn btn--primary">Save</button>
+          <button
+            onClick={() => setSidebar(false)}
+            className="btn btn--primary"
+          >
+            Save
+          </button>
         </div>
       </div>
     </>,
