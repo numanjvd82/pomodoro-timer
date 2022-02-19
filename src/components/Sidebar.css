@@ -33,15 +33,6 @@
   }
 }
 
-.menu-btn {
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.menu-btn:hover {
-  transform: translateY(-5%) scale(1.1);
-}
-
 .sidebar__header-close:hover {
   color: #802626;
 }

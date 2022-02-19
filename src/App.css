@@ -66,3 +66,18 @@ body {
   filter: brightness(1.2);
   transform: translateY(-3px);
 }
+
+.menu-btn {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-btn:hover {
+  transform: translateY(-5%) scale(1.1);
+  color: #fff;
+}
+
+.btn-section {
+  display: flex;
+  justify-content: space-between;
+}

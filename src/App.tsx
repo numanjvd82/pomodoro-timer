@@ -1,9 +1,7 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Stopwatch from './components/Stopwatch';
 import Sidebar from './components/Sidebar';
 import { HiMenu } from 'react-icons/hi';
-import tick from './tick.mp3';
-import useSound from 'use-sound';
 import './App.css';
 
 function App() {
@@ -14,8 +12,6 @@ function App() {
   const [sidebar, setSidebar] = useState(false);
   const [settings, setSettings] = useState({});
 
-  const [play, exposedData] = useSound(tick);
-
   const divRef = useRef<HTMLDivElement>(null);
 
   const handleReset = () => {
@@ -24,7 +20,6 @@ function App() {
       setSeconds(0);
       setReset(false);
       setStart(false);
-      exposedData.stop();
     } else {
       return;
     }
@@ -45,7 +40,6 @@ function App() {
         setSeconds(0);
         setReset(true);
         setStart(false);
-        exposedData.stop();
       }
 
       if (seconds === 0) {
@@ -68,15 +62,6 @@ function App() {
       window.clearInterval(interval);
     };
   }, [minutes, seconds, start]);
-
-  useEffect(() => {
-    if (start) {
-      play();
-      exposedData.sound._loop = true;
-    } else {
-      exposedData.stop();
-    }
-  }, [start]);
 
   return (
     <>
